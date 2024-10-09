@@ -1,115 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>form</title>
-    <style>
-        body {
-  font-family: Arial, sans-serif;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
 
-form {
-  width: 350px;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
+    form {
+      width: 350px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
 
-body{
-  background-color: black;
-}
-label {
-  display: block;
-  margin-top: 10px;
- 
-}
+    label {
+      display: block;
+      margin-top: 10px;
 
-input[type="text"], input[type="email"], input[type="password"] {
-  width: 95%;
-  padding: 10px;
-  margin-top: 5px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
+    }
 
-input[type="submit"] {
-  width: 100%;
-  padding: 10px;
-  margin-top: 20px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 95%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
 
-input[type="submit"]:hover {
-  background-color: #45a049;
-}
+    input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
 
-.error {
-  color: red;
-  font-size: 12px;
-  margin-top: 5px;
-}
-    </style>
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    .error {
+      color: red;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+  </style>
 </head>
+
 <body>
-    <form id="myForm">
-        <label for="name" >Name:</label>
-        <input type="text" id="name" name="name"><br><br>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email"><br><br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password"><br><br>
-        <input type="submit" value="Submit">
-      </form>
-    <script>
-        const form = document.getElementById("myForm");
-const nameInput = document.getElementById("name");
-const emailInput = document.getElementById("email");
-const passwordInput = document.getElementById("password");
+  <form id="myForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name"><br><br>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email"><br><br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password"><br><br>
+    <input type="submit" value="Submit">
+  </form>
+  <script>
+    const form = document.getElementById("myForm");
+    const nameInput = document.getElementById("name");
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("password");
 
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
 
-  const name = nameInput.value.trim();
-  const email = emailInput.value.trim();
-  const password = passwordInput.value.trim();
+      const name = nameInput.value.trim();
+      const email = emailInput.value.trim();
+      const password = passwordInput.value.trim();
 
-  let errors = [];
+      let errors = [];
 
-  if (name === "") {
-    errors.push("Name is required");
-  }
+      if (name === "") {
+        errors.push("Name is required");
+      }
 
-  if (email === "") {
-    errors.push("Email is required");
-  } else if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
-    errors.push("Invalid email address");
-  }
+      if (email === "") {
+        errors.push("Email is required");
+      } else if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
+        errors.push("Invalid email address");
+      }
 
-  if (password === "") {
-    errors.push("Password is required");
-  } else if (password.length < 8) {
-    errors.push("Password must be at least 8 characters long");
-  }
+      if (password === "") {
+        errors.push("Password is required");
+      } else if (password.length < 8) {
+        errors.push("Password must be at least 8 characters long");
+      }
 
-  if (errors.length > 0) {
-    const errorList = document.createElement("ul");
-    errors.forEach((error) => {
-      const errorListItem = document.createElement("li");
-      errorListItem.textContent = error;
-      errorListItem.className = "error";
-      errorList.appendChild(errorListItem);
+      if (errors.length > 0) {
+        const errorList = document.createElement("ul");
+        errors.forEach((error) => {
+          const errorListItem = document.createElement("li");
+          errorListItem.textContent = error;
+          errorListItem.className = "error";
+          errorList.appendChild(errorListItem);
+        });
+        form.appendChild(errorList);
+      } else {
+        alert("Form submitted successfully!");
+      }
     });
-    form.appendChild(errorList);
-  } else {
-    alert("Form submitted successfully!");
-  }
-});
-    </script>
+  </script>
 </body>
+
 </html>
